@@ -33,7 +33,8 @@ Gem::Specification.new do |s|
      "spec/fixtures/foo_foo_caller.rb",
      "spec/spec.opts",
      "spec/spec_helper.rb",
-     "spec/who_called_me_spec.rb"
+     "spec/who_called_me_spec.rb",
+     "who_called_me.gemspec"
   ]
   s.homepage = %q{http://github.com/alainravet/who_called_me}
   s.rdoc_options = ["--charset=UTF-8"]
