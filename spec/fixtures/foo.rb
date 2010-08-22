@@ -7,4 +7,8 @@ class Foo
   def bar
     who_called_me
   end
+
+  def self.point_1
+    FooFoo.point_1
+  end
 end

@@ -30,11 +30,14 @@ module WhoCalledMe
 
 
   def self._who_called_me_data(options={})
-    all = @@__who_called_me_accumul_h[:all]
     if options[:only_top]
-      all.collect{|trace| trace.first }.uniq
+      {}.tap do |result|
+        @@__who_called_me_accumul_h.each do |key, traces|
+          result[key] = traces.collect{|trace| trace.first }.uniq
+        end
+      end
     else
-      all
+      @@__who_called_me_accumul_h
     end
   end
 
@@ -47,6 +50,10 @@ module WhoCalledMe
     puts 'who_called_me report :'
     puts '======================'
     _who_called_me_data.keys.each do |key|
+      puts
+      puts "+----------------------------"
+      puts (key == :all) ? '| who_called_me' : "| who_called_me(#{key})"
+      puts "+----------------------------"
       _who_called_me_data[key].each do |trace|
         puts
         puts trace.shift
@@ -60,5 +67,11 @@ module WhoCalledMe
     end
     puts
     puts l0
+  end
+
+  # used by tests only
+  def self.reset
+    @@__who_called_me_accumul_h = {}
+    @@__disable_puts          = false
   end
 end

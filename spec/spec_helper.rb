@@ -5,6 +5,9 @@ require 'spec'
 require 'spec/autorun'
 
 Spec::Runner.configure do |config|
+  config.before(:each) do
+    WhoCalledMe.reset
+  end
   
 end
 
