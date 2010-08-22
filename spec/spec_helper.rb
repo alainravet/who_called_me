@@ -7,3 +7,12 @@ require 'spec/autorun'
 Spec::Runner.configure do |config|
   
 end
+
+def capture_stdout
+  @@original_stdout = STDOUT
+  $stdout = StringIO.new
+end
+
+def restore_stdout
+  $stdout = @@original_stdout
+end

@@ -5,5 +5,8 @@ class FooFoo
     Foo.new.bar
     Foo.new.foo
   end
-end
 
+  def self.point_1
+    who_called_me('point 1')
+  end
+end
