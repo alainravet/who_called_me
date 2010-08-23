@@ -1,7 +1,7 @@
 module WhoCalledMe
   module StringUtils
 
-    def self.common_substring?(a, b)
+    def self.have_common_substring?(a, b)
       1 <= common_substring(a, b).length
     end
 

@@ -13,10 +13,10 @@ module WhoCalledMe
         (0..arr.length-2).each do |i|
           line, next_line = arr[i], arr[i+1]
 
-          next_line_not_in_same_code_tree = !StringUtils.common_substring?(line, next_line)
-          next_line_not_in_same_code_tree ?
-            break :
-            (results << next_line)
+          next_line_in_same_code_tree = StringUtils.have_common_substring?(line, next_line)
+          next_line_in_same_code_tree ?
+            (results << next_line) :
+            break
         end
       end
     end

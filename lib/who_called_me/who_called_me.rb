@@ -1,6 +1,7 @@
 require File.dirname(__FILE__) + '/string_utils'
 require File.dirname(__FILE__) + '/array_utils'
 require File.dirname(__FILE__) + '/trace_utils'
+require File.dirname(__FILE__) + '/who_called_me_report'
 
 module WhoCalledMe
 
@@ -28,7 +29,6 @@ module WhoCalledMe
   end
 
 
-
   def self._who_called_me_data(options={})
     if options[:only_top]
       {}.tap do |result|
@@ -42,35 +42,8 @@ module WhoCalledMe
   end
 
 
-  def self.puts_formatted_traces
-    return if _who_called_me_data.empty?
-    return if @@__disable_puts
-    l0 = '-'*99
-    puts l0
-    puts 'who_called_me report :'
-    puts '======================'
-    _who_called_me_data.keys.each do |key|
-      puts
-      puts "+----------------------------"
-      puts (key == :all) ? '| who_called_me' : "| who_called_me(#{key})"
-      puts "+----------------------------"
-      _who_called_me_data[key].each do |trace|
-        puts
-        puts trace.shift
-        puts '  was called by :'
-        padding = ''
-        trace.each do |line|
-          padding += '  '
-          puts "  .#{padding}#{line}"
-        end
-      end
-    end
-    puts
-    puts l0
-  end
-
   # used by tests only
-  def self.reset
+  def self.reset_for_next_test
     @@__who_called_me_accumul_h = {}
     @@__disable_puts          = false
   end

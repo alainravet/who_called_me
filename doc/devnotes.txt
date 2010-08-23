@@ -1,0 +1,7 @@
+
+How to test the current features on embedded sample code ?
+--------------------------------------------------------
+
+    $ cd <proj_notes>
+    $ ruby spec/live_testing/foo_foo_caller.rb
+

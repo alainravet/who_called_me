@@ -6,7 +6,7 @@ require 'spec/autorun'
 
 Spec::Runner.configure do |config|
   config.before(:each) do
-    WhoCalledMe.reset
+    WhoCalledMe.reset_for_next_test
   end
   
 end
