@@ -8,15 +8,21 @@ module WhoCalledMe
         $!.backtrace
       end
 
-      def formatted_trace(trace)
+      def formatted_trace(trace, processed_first_lines)
         first_line, last_line = trace.first, trace.last
+        already_recorded_a_trace_for_this_target = processed_first_lines.include?(first_line)
         trace.shift
         res = []
         res << "\n"
-        res += boxed_code_snippet_around(first_line)
+
+        unless already_recorded_a_trace_for_this_target
+          processed_first_lines << first_line
+          short_form = already_recorded_a_trace_for_this_target
+          res += boxed_code_snippet_around(first_line)  unless short_form
+        end
         res << '  was called by :'
         res += indented_call_trace(trace)
-        res += indent(boxed_code_snippet_around(last_line), :prefix => '   ')
+        res += indent(boxed_code_snippet_around(last_line), :prefix => ' '*6)
         res
       end
 

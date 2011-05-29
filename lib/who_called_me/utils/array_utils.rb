@@ -7,7 +7,6 @@ module WhoCalledMe
         array.collect{|l| "#{prefix}#{l}"}
       end
 
-
       def first_elements_with_common_prefix(arr, pre_len_to_ignore=0)
         arr.each_index do |i|
           # exclude the n first characters from the comparison <- remove them
