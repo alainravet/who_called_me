@@ -4,7 +4,7 @@ $:.push File.expand_path("../lib", __FILE__)
 
 Gem::Specification.new do |s|
   s.name      = 'who_called_me'
-  s.version   = "0.1.0"
+  s.version   = "0.1.1"
   s.date      = Time.now.utc.strftime("%Y-%m-%d")
   s.homepage  = %q{http://github.com/alainravet/who_called_me}
 
