@@ -1,45 +1,19 @@
-require 'rubygems'
-require 'rake'
+# encoding: UTF-8
+require 'bundler'
+Bundler::GemHelper.install_tasks
 
-begin
-  require 'jeweler'
-  Jeweler::Tasks.new do |gem|
-    gem.name        = "who_called_me"
-    gem.summary     = %Q{track and list the code lines that exercise a line}
-    gem.description = %Q{track and list the code lines that exercise a line}
-    gem.email       = "alain.ravet+git@gmail.com"
-    gem.homepage    = "http://github.com/alainravet/who_called_me"
-    gem.authors     = ["Alain Ravet"]
-    gem.add_development_dependency "rspec", ">= 1.2.9"
-    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
-  end
-  Jeweler::GemcutterTasks.new
-rescue LoadError
-  puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
-end
+require 'rake'
+require 'rake/rdoctask'
 
 require 'spec/rake/spectask'
 Spec::Rake::SpecTask.new(:spec) do |spec|
   spec.libs << 'lib' << 'spec'
   spec.spec_files = FileList['spec/**/*_spec.rb']
 end
+task :default => :spec
 
 Spec::Rake::SpecTask.new(:rcov) do |spec|
   spec.libs    << 'lib' << 'spec'
   spec.pattern = 'spec/**/*_spec.rb'
   spec.rcov    = true
-end
-
-task :spec => :check_dependencies
-
-task :default => :spec
-
-require 'rake/rdoctask'
-Rake::RDocTask.new do |rdoc|
-  version = File.exist?('VERSION') ? File.read('VERSION') : ""
-
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.title    = "who_called_me #{version}"
-  rdoc.rdoc_files.include('README*')
-  rdoc.rdoc_files.include('lib/**/*.rb')
 end

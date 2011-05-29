@@ -1,0 +1,6 @@
+
+
+    - replaced Rubygems & Jeweler by Bundler
+
+version 0.1.0
+    - initial version
