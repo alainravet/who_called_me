@@ -1,10 +1,17 @@
-require File.dirname(__FILE__) + '/string_utils'
-require File.dirname(__FILE__) + '/array_utils'
-require File.dirname(__FILE__) + '/trace_utils'
-require File.dirname(__FILE__) + '/who_called_me_report'
 
 module WhoCalledMe
+  def self.puts_all_formatted_traces
+    return if _who_called_me_data.empty?
+    return if @@__disable_puts
+    _who_called_me_data.keys.each do |key|
+      _who_called_me_data[key].each do |trace|
+         puts formatted_trace(trace).join("\n")
+      end
+    end
+  end
+end
 
+module WhoCalledMe
   @@__who_called_me_accumul_h = {}
   @@__disable_puts          = false
 
@@ -13,13 +20,9 @@ module WhoCalledMe
 
 
   def self._who_called_me(msg=nil, nof_internal_methods_to_skim=1+1) # this + _fulltrace
-    fulltrace = TraceUtils.fulltrace
-    trace = ArrayUtils.first_elements_with_common_prefix(fulltrace, 1)
+    trace = first_elements_with_common_prefix(fulltrace, 1)
     trace = trace[nof_internal_methods_to_skim..-1]
-    trace.reverse!
-
     record(msg || :all, trace)
-
     trace
   end
 
@@ -47,4 +50,6 @@ module WhoCalledMe
     @@__who_called_me_accumul_h = {}
     @@__disable_puts          = false
   end
+
+
 end

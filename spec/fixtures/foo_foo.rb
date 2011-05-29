@@ -2,8 +2,8 @@ require File.expand_path(File.dirname(__FILE__) + '/foo')
 
 class FooFoo
   def foofoo
-    Foo.new.bar
-    Foo.new.foo
+    Foo.new.level_0
+    Foo.new.level_1
   end
 
   def self.point_1

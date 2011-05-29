@@ -21,11 +21,6 @@ Gem::Specification.new do |s|
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.require_paths = ["lib"]
 
-  %w().each do |gem|
-    s.add_dependency gem
-  end
-  %w(rspec).each do |gem|
-    s.add_development_dependency gem
-  end
+  s.add_development_dependency 'rspec', '>=2.6.0'
 end
 

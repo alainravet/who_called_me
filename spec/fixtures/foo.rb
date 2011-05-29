@@ -1,10 +1,8 @@
-require File.expand_path(File.dirname(__FILE__) + '/../../lib/who_called_me')
-
 class Foo
-  def foo
-    bar
+  def level_1
+    level_0 # -1
   end
-  def bar
+  def level_0
     who_called_me
   end
 
